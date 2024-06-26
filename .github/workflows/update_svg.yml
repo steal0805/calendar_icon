@@ -27,7 +27,12 @@ jobs:
       - name: Run update script
         run: ./update_icon.sh calendar_icon.svg
 
-      - name: Push changes
+      - name: Check if there are changes to commit
+        id: check_changes
+        run: echo "::set-output name=changes::$(git status --porcelain)"
+
+      - name: Commit and push changes if there are any
+        if: steps.check_changes.outputs.changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
