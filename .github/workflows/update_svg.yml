@@ -22,7 +22,7 @@ jobs:
         run: chmod +x update_icon.sh
 
       - name: Run update script
-        run: ./update_icon.sh
+        run: ./update_icon.sh ./calendar_icon.svg
 
       - name: Push changes
         run: |
